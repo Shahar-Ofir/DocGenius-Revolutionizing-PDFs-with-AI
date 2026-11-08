@@ -39,9 +39,21 @@ if user_input:
             generation_config={"max_output_tokens": MAX_OUTPUT_TOKENS},
             request_options={"timeout": MODEL_TIMEOUT_S, "retry": _RETRY},
         )
-        # Display the generated response
-        st.write("Response from Gemini AI:")
-        st.write(response.text)
+        block = getattr(response.prompt_feedback, "block_reason", None)
+        if block:
+            st.warning(f"Prompt was blocked ({block.name}). Please rephrase.")
+        elif not response.candidates:
+            st.warning("Gemini returned no response.")
+        else:
+            finish = response.candidates[0].finish_reason.name
+            if finish not in ("STOP", "MAX_TOKENS") or not response.candidates[0].content.parts:
+                st.warning(f"Response was not completed (reason: {finish}).")
+            else:
+                # Display the generated response
+                st.write("Response from Gemini AI:")
+                st.write(response.text)
+                if finish == "MAX_TOKENS":
+                    st.info(f"Response truncated at the {MAX_OUTPUT_TOKENS}-token limit.")
     except Exception as e:
         st.error(f"Gemini request failed: {e}")
 else:
