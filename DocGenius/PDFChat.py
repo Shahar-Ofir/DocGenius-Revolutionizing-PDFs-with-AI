@@ -38,9 +38,12 @@ if pdf is not None:
     if query:
         docs = knowledge_base.similarity_search(query)
 
-        llm = OpenAI()
+        # Timeout, output-token ceiling and bounded retries (read-only call, safe to retry)
+        llm = OpenAI(max_tokens=512, request_timeout=60, max_retries=3)
         chain = load_qa_chain(llm, chain_type="stuff")
-        response = chain.run(input_documents=docs, question=query)
-           
-        st.success(response)
+        try:
+            response = chain.run(input_documents=docs, question=query)
+            st.success(response)
+        except Exception as e:
+            st.error(f"Model request failed: {e}")
         
