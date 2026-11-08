@@ -1,0 +1,70 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Length 304 >>
+stream
+BT /F1 12 Tf 15 TL 72 740 Td
+(Northwind Robotics Employee Handbook) Tj T*
+(Section 1: Working Hours) Tj T*
+(Core hours at Northwind Robotics are from 10:00 to 15:00.) Tj T*
+(Employees may work remotely on Tuesdays and Thursdays.) Tj T*
+(All other weekdays are office days at the Rotterdam site.) Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 250 >>
+stream
+BT /F1 12 Tf 15 TL 72 740 Td
+(Section 2: Leave) Tj T*
+(New employees receive 23 days of paid vacation per year.) Tj T*
+(Up to 7 unused vacation days may be carried over to the next year.) Tj T*
+(Parental leave is 18 weeks and is fully paid.) Tj T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 298 >>
+stream
+BT /F1 12 Tf 15 TL 72 740 Td
+(Section 3: Expenses) Tj T*
+(Expense reports must be submitted within 30 days through the Ledgerly portal.) Tj T*
+(Meals during business travel are reimbursed up to 55 euros per day.) Tj T*
+(Business class flights require approval from the CFO, Marta Okonkwo.) Tj T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000579 00000 n 
+0000000705 00000 n 
+0000001006 00000 n 
+0000001132 00000 n 
+0000001481 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+1607
+%%EOF

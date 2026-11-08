@@ -1,16 +1,11 @@
 from dotenv import load_dotenv
 import os
 import streamlit as st
-from PyPDF2 import PdfReader
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
-from langchain.callbacks import get_openai_callback
+from PIL import Image
+
+from qa import build_knowledge_base, answer_question
 
 load_dotenv()
-from PIL import Image
 _icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Artifacts", "Image Resources", "images.jpeg")
 img = Image.open(_icon_path) if os.path.exists(_icon_path) else "📄"
 st.set_page_config(page_title="DocGenius: Document Generation AI", page_icon= img)
@@ -18,33 +13,21 @@ st.header("Ask Your PDF📄")
 pdf = st.file_uploader("Upload your PDF", type="pdf")
 
 if pdf is not None:
-    pdf_reader = PdfReader(pdf)
-    text = ""
-    for page in pdf_reader.pages:
-        text += page.extract_text()
-
-    text_splitter = CharacterTextSplitter(
-        separator="\n",
-        chunk_size=1000,
-        chunk_overlap=200,
-        length_function=len
-    )  
-
-    chunks = text_splitter.split_text(text)
-
-    embeddings = OpenAIEmbeddings()
-    knowledge_base = FAISS.from_texts(chunks, embeddings)
+    try:
+        knowledge_base = build_knowledge_base(pdf)
+    except Exception as e:
+        st.error(f"Could not process the PDF: {e}")
+        st.stop()
 
     query = st.text_input("Ask your Question about your PDF")
     if query:
-        docs = knowledge_base.similarity_search(query)
-
-        # Timeout, output-token ceiling and bounded retries (read-only call, safe to retry)
-        llm = OpenAI(max_tokens=512, request_timeout=60, max_retries=3)
-        chain = load_qa_chain(llm, chain_type="stuff")
         try:
-            response = chain.run(input_documents=docs, question=query)
+            response, sources = answer_question(knowledge_base, query)
             st.success(response)
+            # Show the chunks the answer was based on so the user can check grounding
+            with st.expander(f"Sources ({len(sources)} passages)"):
+                for doc in sources:
+                    st.markdown(f"**Page {doc.metadata.get('page', '?')}**")
+                    st.text(doc.page_content)
         except Exception as e:
             st.error(f"Model request failed: {e}")
-        

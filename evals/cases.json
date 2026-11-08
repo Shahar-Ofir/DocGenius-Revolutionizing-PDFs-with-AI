@@ -1,0 +1,58 @@
+[
+  {
+    "id": "vacation-days",
+    "pdf": "handbook.pdf",
+    "question": "How many days of paid vacation do new employees get per year?",
+    "expected_any": ["23", "twenty-three"],
+    "source_page": 2
+  },
+  {
+    "id": "carry-over",
+    "pdf": "handbook.pdf",
+    "question": "How many unused vacation days can be carried over to the next year?",
+    "expected_any": ["7", "seven"],
+    "source_page": 2
+  },
+  {
+    "id": "flight-approval",
+    "pdf": "handbook.pdf",
+    "question": "Who has to approve business class flights?",
+    "expected_all": ["Okonkwo"],
+    "source_page": 3
+  },
+  {
+    "id": "expense-deadline",
+    "pdf": "handbook.pdf",
+    "question": "Within how many days must expense reports be submitted?",
+    "expected_any": ["30", "thirty"],
+    "source_page": 3
+  },
+  {
+    "id": "remote-days",
+    "pdf": "handbook.pdf",
+    "question": "On which days are employees allowed to work remotely?",
+    "expected_all": ["Tuesday", "Thursday"],
+    "source_page": 1
+  },
+  {
+    "id": "project-lead",
+    "pdf": "status_report.pdf",
+    "question": "Who is the project lead for Project Kestrel?",
+    "expected_all": ["Varga"],
+    "source_page": 1
+  },
+  {
+    "id": "main-risk",
+    "pdf": "status_report.pdf",
+    "question": "Which supplier is the main risk to the project?",
+    "expected_all": ["Brightfield"],
+    "source_page": 2
+  },
+  {
+    "id": "unanswerable",
+    "pdf": "handbook.pdf",
+    "question": "What is the company's stock ticker symbol?",
+    "expected_any": ["don't know", "do not know", "not mention", "not mentioned", "not provided", "no information", "not specified", "not stated", "not available", "not given"],
+    "source_page": null
+  }
+]
