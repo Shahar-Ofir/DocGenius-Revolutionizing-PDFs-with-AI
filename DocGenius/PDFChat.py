@@ -11,7 +11,8 @@ from langchain.callbacks import get_openai_callback
 
 load_dotenv()
 from PIL import Image
-img = Image.open(r"C:\Users\KALYAN\Desktop\Projects\DocGenius\images.jpeg")
+_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Artifacts", "Image Resources", "images.jpeg")
+img = Image.open(_icon_path) if os.path.exists(_icon_path) else "📄"
 st.set_page_config(page_title="DocGenius: Document Generation AI", page_icon= img)
 st.header("Ask Your PDF📄")
 pdf = st.file_uploader("Upload your PDF", type="pdf")
